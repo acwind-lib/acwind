@@ -1,52 +1,57 @@
-Library for classification of wind turbine SCADA data.
+acwind
+======
+A Python library for automatic classification of SCADA wind energy analytics
 
-* Free software: GPL
+License: GPL-3.0 (see the LICENSE for details)
 
-Installation
-------------
+Download
+--------
 
-You can install the package directly from the source directly by downloading
-the package from github or directly from source files and running the command
-below
+You can install this library using Anaconda,
+https://www.anaconda.com/download
 
-Libraries: acwind requires the following libraries to be installed.
+To install the anaconda version
 
-    Python 3.0
-    numpy
-    scipy
-    itertools
-    math
-    sklearn
-    pandas
-    torch
+::
+    $ conda install -c acwind-lib acwind
 
-At the command line::
+To install the git version
 
-    cd acwind
-    python setup.py install
+::
+    $ git clone git@github.com:acwind-lib/acwind.git
 
 Documentation
 -------------
 
-The latest version of the documentation is availible at,
+The docs can be found at:
+https://acwind-lib.readthedocs.io/en/latest/
 
-    https://acwind.readthedocs.io/
+You can also generate the documentation locally by
 
-Alternatively the documentation can be built in html format with the
-following command::
+::
+    $ cd docs
+    $ make html
 
-    cd acwind/docs
-    make html
+which will generate all the documentation in `_build/html`
 
-The documentation is located in::
+Installation
+------------
 
-    acwind/docs/_build/html
+The package has the following dependencies
 
-You can visualise it by opening file::
+    * itertools
+    * math
+    * numpy
+    * pandas
+    * Python 3
+    * pytorch
+    * scipy
+    * sklearn
 
-    index.html
+To install the package simply run
 
-in a browser.
+::
+    $ python setup.py install
 
 Development
 -----------
