@@ -10,14 +10,10 @@ Download
 You can install this library using Anaconda,
 https://www.anaconda.com/download
 
-To install the anaconda version
-
-::
+To install the anaconda version::
     $ conda install -c acwind-lib acwind
 
-To install the git version
-
-::
+To install the git version::
     $ git clone git@github.com:acwind-lib/acwind.git
 
 Documentation
@@ -26,9 +22,7 @@ Documentation
 The docs can be found at:
 https://acwind-lib.readthedocs.io/en/latest/
 
-You can also generate the documentation locally by
-
-::
+You can also generate the documentation locally by::
     $ cd docs
     $ make html
 
@@ -48,9 +42,7 @@ The package has the following dependencies
     * scipy
     * sklearn
 
-To install the package simply run
-
-::
+To install the package simply run::
     $ python setup.py install
 
 Development
