@@ -11,10 +11,12 @@ You can install this library using Anaconda,
 https://www.anaconda.com/download
 
 To install the anaconda version
+
 ..code:: none
     $ conda install -c acwind-lib acwind
 
 To install the git version
+
 ..code:: none
     $ git clone git@github.com:acwind-lib/acwind.git
 
@@ -45,6 +47,7 @@ The package has the following dependencies
     * sklearn
 
 To install the package simply run
+
 ..code:: none
     $ python setup.py install
 
