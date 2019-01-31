@@ -12,12 +12,10 @@ https://www.anaconda.com/download
 
 To install the anaconda version
 
-..code:: none
     $ conda install -c acwind-lib acwind
 
 To install the git version
 
-..code:: none
     $ git clone git@github.com:acwind-lib/acwind.git
 
 Documentation
@@ -26,7 +24,8 @@ Documentation
 The docs can be found at:
 https://acwind-lib.readthedocs.io/en/latest/
 
-You can also generate the documentation locally by::
+You can also generate the documentation locally by
+
     $ cd docs
     $ make html
 
@@ -48,7 +47,6 @@ The package has the following dependencies
 
 To install the package simply run
 
-..code:: none
     $ python setup.py install
 
 Development
