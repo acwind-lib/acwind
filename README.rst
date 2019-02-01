@@ -12,9 +12,13 @@ https://www.anaconda.com/download
 
 To install the anaconda version
 
+.. code-block:: none
+
     $ conda install -c acwind-lib acwind
 
 To install the git version
+
+.. code-block:: none
 
     $ git clone git@github.com:acwind-lib/acwind.git
 
@@ -26,6 +30,8 @@ https://acwind-lib.readthedocs.io/en/latest/
 
 You can also generate the documentation locally by
 
+.. code-block:: none
+
     $ cd docs
     $ make html
 
@@ -36,8 +42,7 @@ Installation
 
 The package has the following dependencies
 
-    * itertools
-    * math
+    * matplotlib
     * numpy
     * pandas
     * Python 3
@@ -46,6 +51,8 @@ The package has the following dependencies
     * sklearn
 
 To install the package simply run
+
+.. code-block:: none
 
     $ python setup.py install
 
