@@ -5,7 +5,7 @@
 # Required
 version: 2
 
-method: conda
+conda:
     environment: meta.yaml
 
 # Build documentation in the docs/ directory with Sphinx
