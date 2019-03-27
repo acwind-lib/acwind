@@ -3,13 +3,12 @@ package:
     version: "1.0"
 
 source:
-    # git_url: https://github.com/acwind-lib/acwind.git
     path: .
+    #git_url: https://github.com/acwind-lib/acwind.git
 
 requirements:
     build:
         - python
-
     run:
         - python >=3.4
         - matplotlib

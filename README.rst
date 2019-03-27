@@ -26,7 +26,7 @@ Documentation
 -------------
 
 The docs can be found at:
-https://acwind-lib.readthedocs.io/en/latest/
+https://acwind.readthedocs.io/en/latest/
 
 You can also generate the documentation locally by
 
