@@ -26,7 +26,7 @@ Documentation
 -------------
 
 The docs can be found at:
-https://acwind.readthedocs.io/en/latest/
+https://www.maths.ed.ac.uk/~amartinsson/acwind/
 
 You can also generate the documentation locally by
 

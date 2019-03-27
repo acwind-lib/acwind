@@ -7,8 +7,9 @@ User Guide
     :maxdepth: 2
 
 Welcome to the acwind user guide which will take you through the basic
-functionallity of the acwind program. To make sure that you have installed the
-package correctly, the following should not generate an error:
+functionallity of the acwind program. If you have any questions on any
+of the below please contact the authors. To make sure that you have installed
+the package correctly, the following should not generate an error:
 
 .. code:: python3
 
@@ -20,10 +21,7 @@ outline how each of the acwind modules work.
 
 The packages has been designed to build neural net classifiers to label SCADA
 data coming from wind farms, to perform automatic labelling of operational
-states given a set of input signals. For more details see
-''REFERENCE TO PAPER''.
-
-to be continued ...
+states given a set of input signals. For more details see paper_.
 
 Formatting of the Data
 ----------------------
@@ -43,10 +41,19 @@ the :ref:`Alignment module`.
 Creating Multi Farm Training Data
 ---------------------------------
 
-Describe how to use the :ref:`Alignment module` to create a training dataset which
-can used to train CNN's
+As we have described in paper_ the predictive power of classifying SCADA data
+can be improved by creating multifarm training data. To this end we have
+created the :ref:`Alignment module` which generates aligned SCADA data which
+can used to train e.g a CNN classifier.
 
 Training a Neural Net Classifier
 --------------------------------
 
-Describe how to use :ref:`Neural Network Model module`
+We have created a small interface to PyTorch_ which can be used to train
+several types of Neural Networks. Please have a look in the source code on
+:ref:`Neural Network Model module` to check how this can be used or get in
+contact with the Authors. As described in the paper_ these classifiers have an
+accuracy of about 95%.
+
+.. _PyTorch: https://pytorch.org
+.. _paper: https://arxiv.org/abs/1903.08901
