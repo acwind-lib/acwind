@@ -56,10 +56,12 @@ To install the package simply run
 
     $ python setup.py install
 
-Development
------------
+Development / Further Support
+-----------------------------
 
-In case you want to contribute to this project contact the authors by now.
+In case you want to contribute to this project contact the authors by now. If
+there are any other questions regarding any of the material included in the
+following pages, please do not hesitate to get in contact with the authors.
 
 Acknowledgements
 ----------------
