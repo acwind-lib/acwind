@@ -1,0 +1,28 @@
+package:
+    name: acwind
+    version: "1.0"
+
+source:
+    path: .
+    #git_url: https://github.com/acwind-lib/acwind.git
+
+requirements:
+    build:
+        - python
+    run:
+        - python >=3.4
+        - matplotlib
+        - numpy >=1.11
+        - scipy
+        - scikit-learn
+        - pandas
+        - pytorch
+
+build:
+    noarch: generic
+
+about:
+    home: https://github.com/acwind-lib/acwind/
+    licence: GPL 3
+    license_file: LICENSE
+    summary: automatic classification for wind energy analytics
