@@ -18,13 +18,13 @@ from scipy.optimize import curve_fit, minimize
 from .helpers import gaussian
 
 
-def apply_dataframe_shift(df, features, old_baseline, new_baseline,
+def apply_dataframe_shift(dataframe, features, old_baseline, new_baseline,
                           shift_feature=None):
     """ Function which applies a baseline shift to the dataframe given, where
     after the shift the two baselines will be aligned. If no shift_feature is
     given then the shift is applied to features[0]
 
-    :param pandas df: SCADA data
+    :param pandas dataframe: SCADA data
     :param str features: array of feature names
     :param ndarray old_baseline: baseline of the features in the dataframe
     :param ndarray new_baseline: baseline which the dataframe is supposed to be\
@@ -55,10 +55,10 @@ def apply_dataframe_shift(df, features, old_baseline, new_baseline,
         dataframe.loc[:, features[1]] = shifted_feature
 
 
-def get_baseline(df, features, nbins=200, gauss_fit=False, legacy=False):
+def get_baseline(dataframe, features, nbins=200, gauss_fit=False, legacy=False):
     """ 2D histogram approach to get the baseline
 
-    :param pandas df: SCADA data
+    :param pandas dataframe: SCADA data
     :param str features: list of two strings of feature names used for\
                          the histogram.
     :param int nbins: the number of bins in one dimension of the histogram
@@ -209,15 +209,15 @@ def shift_data_x(data, old_baseline, new_baseline):
     return x_shifted
 
 
-def normalize_dataset_minmax(df, features=None, classes=None):
+def normalize_dataset_minmax(dataframe, features=None, classes=None):
     """ Normalizes the dataset uniformly between 0 and 1
 
-    :param pandas df: SCADA data
+    :param pandas dataframe: SCADA data
     :param list features: list of features to be used in the normalization.
     :param classes: list of operational classes to be used in the normalization.
 
     :return: The normalized dataset
-    :rtype: pandas df
+    :rtype: pandas dataframe
     """
 
     if (features is None):
@@ -229,41 +229,41 @@ def normalize_dataset_minmax(df, features=None, classes=None):
     classes = classes + features
 
     for ff in flags:
-        if ((ff in df.columns) == False):
-            df[ff] = 0
+        if ((ff in dataframe.columns) == False):
+            dataframe[ff] = 0
 
-    df[features] -= df[features].min()
-    df[features] /= df[features].max()
+    dataframe[features] -= dataframe[features].min()
+    dataframe[features] /= dataframe[features].max()
 
-    hh, aa = np.histogram(df[features[1]].values, bins=100)
+    hh, aa = np.histogram(dataframe[features[1]].values, bins=100)
     aa = (aa[:-1] + aa[1:])/2
     ii = np.argmax(hh[aa < 0.1])
-    df[features[1]] -= (aa[ii])
-    hh, aa = np.histogram(df[features[1]].values, bins=100)
+    dataframe[features[1]] -= (aa[ii])
+    hh, aa = np.histogram(dataframe[features[1]].values, bins=100)
     aa = (aa[:-1] + aa[1:])/2
     hh = hh[aa > 0.9]
     aa = aa[aa > 0.9]
     ii = np.argmax(hh)
-    df[features[1]] /= (aa[ii])
+    dataframe[features[1]] /= (aa[ii])
 
-    if 'pitch' in df:
+    if 'pitch' in dataframe:
         for ii in range(5):
-            df.loc[df['pitch'] < -60,
-                   'pitch'] = df.loc[df['pitch'] < -60, 'pitch'] + 360
-            df.loc[df['pitch'] > 300,
-                   'pitch'] = df.loc[df['pitch'] > 300, 'pitch'] - 360
+            dataframe.loc[dataframe['pitch'] < -60,
+                   'pitch'] = dataframe.loc[dataframe['pitch'] < -60, 'pitch'] + 360
+            dataframe.loc[dataframe['pitch'] > 300,
+                   'pitch'] = dataframe.loc[dataframe['pitch'] > 300, 'pitch'] - 360
 
-    return df
+    return dataframe
 
 
-def normalize_dataset(df, relativeto=None, bins=100, qstep=100, verbose=False,
+def normalize_dataset(dataframe, relativeto=None, bins=100, qstep=100, verbose=False,
                       features=None):
     """ Normalize a dataset, and shift one onto another if relativeto\
     is specified.
 
-    :param pandas df: SCADA data
+    :param pandas dataframe: SCADA data
     :param pandas relativeto: The target dataset to match with. It will\
-                                 scale df to fit this dataset.
+                                 scale dataframe to fit this dataset.
     :param int bins: the number of bins to use for the histogram
     :param int qstep: How much the data should be subsampled. Larger numbers \
                       give improved performance.
@@ -279,17 +279,17 @@ def normalize_dataset(df, relativeto=None, bins=100, qstep=100, verbose=False,
     if (len(features) is not 2):
         raise ValuesError('feature length must be of length 2!')
 
-    df = normalize_dataset_minmax(df, features=features)
+    dataframe = normalize_dataset_minmax(dataframe, features=features)
 
     if (relativeto is None):
         if verbose:
             print('>) Done!')
-        return df
+        return dataframe
     zz = relativeto[[features[0], features[1]]].values
     H, _, __ = np.histogram2d(zz[:, 0], zz[:, 1], bins=bins, range=[
                               [-.1, 1.1], [-.1, 1.1]], normed=True)
 
-    zz = df[[features[0], features[1]]].values
+    zz = dataframe[[features[0], features[1]]].values
     zz_q = zz[::qstep, :]
     aa = np.linspace(0.5, 1.5, 10)
     bb = np.linspace(-.2, .2, 10)
@@ -309,15 +309,15 @@ def normalize_dataset(df, relativeto=None, bins=100, qstep=100, verbose=False,
               str(x0) + ' with fun=' + str(minres))
     res = minimize(l1diff, x0, args=(zz, H, bins), method='Nelder-Mead')
     a, b, c = res.x
-    df[features[0]] *= a
-    df[features[0]] += b
-    df[features[0]] += c * df[features[1]].values
+    dataframe[features[0]] *= a
+    dataframe[features[0]] += b
+    dataframe[features[0]] += c * dataframe[features[1]].values
     if (verbose):
         print('>) Final L1diff: ' + str(res.fun))
         print('   scale: ' + str(a) + ', shift: ' +
               str(b) + ', bend: ' + str(c))
 
-    return df
+    return dataframe
 
 
 def l1diff(x, zz, HH, bins):
