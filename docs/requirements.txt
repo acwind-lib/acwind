@@ -1,6 +1,6 @@
-python >=3.5
+python
 matplotlib
-numpy >=1.11
+numpy
 scipy
 scikit-learn
 pandas
