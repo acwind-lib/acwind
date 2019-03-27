@@ -10,7 +10,7 @@ requirements:
     build:
         - python
     run:
-        #- python >=3.5
+        - python >=3.5
         - matplotlib
         - numpy >=1.11
         - scipy
